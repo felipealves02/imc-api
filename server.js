@@ -13,8 +13,19 @@ app.use(bodyParser.json());
 app.post("/users", async (req, res) => {
   try {
     const { name, email } = req.body;
-    const user = await User.create({ name, email });
+    // const user = await User.create({ name, email });
     res.status(201).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+
+app.get("/users", async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    // const user = await User.create({ name, email });
+    res.status(201).json({name: "Felipe Alves"});
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -24,5 +35,5 @@ app.post("/users", async (req, res) => {
 app.listen(port, async () => {
   console.log(`Servidor rodando na porta ${port}`);
   // Sincronizando o banco de dados
-  await db.sequelize.sync();
+  // await db.sequelize.sync();
 });
